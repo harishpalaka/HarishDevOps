@@ -1,0 +1,19 @@
+Hi All,
+
+Please follow below steps to install bitnami subversion in Linux instance
+
+1. Download the bitnami installer for your linux OS from below website
+   
+  https://bitnami.com/redirect/to/67004/bitnami-subversion-1.8.13-1-linux-installer.run 
+
+2. Copy the downloaded file to linux machine using winscp
+
+3. Run the file by giving 777 permissions to the file
+   
+    $./bitnami-subversion-1.8.13-1-linux-installer.run
+4. Just keep enter for all the queries
+
+5. Once everything is done open the below link in your windows machine 
+    http://192.168.X.X:8080/subversion
+
+   You should be able to see the Revisin :1 and Readme file

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?> 
+<project name="Antwarfile" default="war">
+
+<path id="lib">
+		<fileset dir="WebContent\WEB-INF\lib">
+			<include name="*.jar"/>
+      </fileset>
+</path>	
+	
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac destdir="build/classes" debug="true" srcdir="src">
+			<classpath refid="lib"/>
+		</javac>
+			
+	</target>
+	
+	<target name="war" depends="compile">
+		<war destfile="dist/Antwar.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent"/>
+			<lib dir="WebContent/WEB-INF/lib"/>
+			<classes dir="build/classes"/>
+		</war>
+	</target>	
+</project>
