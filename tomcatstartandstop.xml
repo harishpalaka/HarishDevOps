@@ -1,0 +1,21 @@
+<project name="myproject" default="start">
+
+<!-- connect to tomcat server and check the status running or not -->
+<target name="checktomcatstatus">
+      <condition property="tomcat.running" value="true" else="false">
+          <socket server="192.168.33.10" port="8080"/> 
+      </condition>
+</target>
+
+<!-- if tomcat running stop the server -->
+<target name="stop" depends="checktomcatstatus" if="${tomcat.running}">
+    <sshexec host="192.168.33.10" username="root" password="vagrant"
+            command="/opt/tomcat/bin/shutdown.sh" trust="true"/>
+  </target>
+  
+<!-- else stop the server -->
+  <target name="start" depends="stop" unless="${tomcat.running}">
+    <sshexec host="192.168.33.10" username="root" password="vagrant"
+            command="/opt/tomcat/bin/startup.sh" trust="true"/>
+  </target> 
+</project>
