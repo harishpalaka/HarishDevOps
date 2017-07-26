@@ -1,0 +1,34 @@
+<project name="testjava" default="run">
+
+<property name="filename" value="HelloWorld"/>
+<property name="build_dir" value="build"/>
+<property name="classes_dir" value="classes"/>
+<property name="jar_dir" value="jar"/>
+<property name="src_dir" value="src"/>
+
+<target name="clean">
+ <delete dir="${build_dir}"/>
+ </target>
+
+<target name="compile" depends="clean">
+<echo> java compile releated task </echo>
+<mkdir dir="${build_dir}/${classes_dir}"/>
+<javac srcdir="${src_dir}" destdir="${build_dir}/${classes_dir}"/>
+</target>
+
+ <target name="packaging" depends="compile">
+ <echo> this is package task </echo>
+<jar basedir="${build_dir}/${classes_dir}" destfile="${build_dir}/${jar_dir}/${filename}.jar">
+<manifest>
+<attribute name="main-class" value="HelloWorld"/>
+</manifest>
+</jar>
+</target>
+
+<target name="run" depends="packaging">
+<echo> this is jar running task </echo>
+<java jar="${build_dir}/${jar_dir}/${filename}.jar" fork='true'/>
+</target>
+
+</project>
+
